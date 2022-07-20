@@ -63,12 +63,7 @@ class Pomodoro extends StatelessWidget {
                             BlocProvider.of<CountDownTimerCubit>(context)
                                 .startSecondsTimer(seconds: 10);
                           }),
-                      Button(
-                          title: 'Pause',
-                          call: () {
-                            BlocProvider.of<CountDownTimerCubit>(context)
-                                .startSecondsTimer(seconds: 10);
-                          })
+                      Button(title: 'Pause', call: () {})
                     ],
                   ),
                 ),
