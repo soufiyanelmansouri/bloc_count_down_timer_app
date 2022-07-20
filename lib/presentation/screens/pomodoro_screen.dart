@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:percent_indicator/percent_indicator.dart';
 
+import '../widgets/buttons.dart';
+
 class Pomodoro extends StatelessWidget {
   const Pomodoro({Key? key}) : super(key: key);
 
@@ -13,8 +15,8 @@ class Pomodoro extends StatelessWidget {
           width: double.infinity,
           decoration: const BoxDecoration(
               gradient: LinearGradient(colors: [
-            Color(0xff1542bf),
-            Color.fromARGB(255, 23, 47, 114),
+            Color.fromARGB(255, 41, 52, 84),
+            Color.fromARGB(255, 91, 115, 181),
           ])),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.start,
@@ -52,22 +54,22 @@ class Pomodoro extends StatelessWidget {
                       topRight: Radius.circular(30),
                     ),
                   ),
-                  child: Center(
-                    child: MaterialButton(
-                      color: Colors.blueGrey,
-                      onPressed: (() {
-                        context
-                            .read<CountDownTimerCubit>()
-                            .startSecondsTimer(seconds: 10);
-                      }),
-                      child: const Text(
-                        'Click Here To Start',
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 20,
-                        ),
-                      ),
-                    ),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Button(
+                          title: 'Start',
+                          call: () {
+                            BlocProvider.of<CountDownTimerCubit>(context)
+                                .startSecondsTimer(seconds: 10);
+                          }),
+                      Button(
+                          title: 'Pause',
+                          call: () {
+                            BlocProvider.of<CountDownTimerCubit>(context)
+                                .startSecondsTimer(seconds: 10);
+                          })
+                    ],
                   ),
                 ),
               )
