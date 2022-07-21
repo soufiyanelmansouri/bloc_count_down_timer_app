@@ -19,7 +19,7 @@ void main() {
 
     test('Testing the startSecondsTimer method', () async {
       sut.startSecondsTimer(seconds: 1);
-      await Future.delayed(const Duration(seconds: 1), () {});
+      await Future.delayed(const Duration(seconds: 2), () {});
       expect(
           sut.state, const CountDownTimerState(percent: 0.0, timeinsecond: 0));
     });

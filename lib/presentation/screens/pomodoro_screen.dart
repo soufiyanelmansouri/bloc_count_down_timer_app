@@ -1,4 +1,5 @@
 import 'package:bloc_count_down_timer/logic/cubit/count_down_timer_cubit.dart';
+import 'package:bloc_count_down_timer/logic/cubit/timer_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:percent_indicator/percent_indicator.dart';
@@ -63,7 +64,15 @@ class Pomodoro extends StatelessWidget {
                             BlocProvider.of<CountDownTimerCubit>(context)
                                 .startSecondsTimer(seconds: 10);
                           }),
-                      Button(title: 'Pause', call: () {})
+                      BlocBuilder<TimerCubit, TimerState>(
+                        builder: (bloc, state) {
+                          return Button(
+                              title: state is TimerIdle ? 'Pause' : 'Resume',
+                              call: () {
+                                bloc.read<TimerCubit>().pauseTheTimer();
+                              });
+                        },
+                      )
                     ],
                   ),
                 ),

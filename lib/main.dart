@@ -1,7 +1,8 @@
-import 'package:bloc_count_down_timer/logic/cubit/count_down_timer_cubit.dart';
 import 'package:bloc_count_down_timer/presentation/screens/pomodoro_screen.dart';
-import 'package:flutter/material.dart';
+import 'package:bloc_count_down_timer/logic/cubit/count_down_timer_cubit.dart';
+import 'package:bloc_count_down_timer/logic/cubit/timer_cubit.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter/material.dart';
 
 void main() {
   runApp(const MyApp());
@@ -13,8 +14,16 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return BlocProvider<CountDownTimerCubit>(
-      create: (context) => CountDownTimerCubit(),
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider<CountDownTimerCubit>(
+          create: (context) => CountDownTimerCubit(),
+        ),
+        BlocProvider<TimerCubit>(
+          create: (context) =>
+              TimerCubit(BlocProvider.of<CountDownTimerCubit>(context)),
+        ),
+      ],
       child: const MaterialApp(
         title: 'Pomodoro',
         debugShowCheckedModeBanner: false,
